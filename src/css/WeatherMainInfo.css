@@ -1,0 +1,42 @@
+.mainInfo {
+  background-color: white;
+  padding: 40px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.city {
+  font-size: 32px;
+  font-weight: bolder;
+}
+
+.country {
+  font-size: 20px;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.weatherConditions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px; /* Espacio entre la imagen y la información de clima */
+  text-align: center;
+}
+
+.condition {
+  font-size: 24px;
+}
+
+.current {
+  font-size: 38px;
+  font-weight: bold;
+}

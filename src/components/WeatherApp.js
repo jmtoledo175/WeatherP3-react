@@ -3,6 +3,7 @@ import React from "react";
 import WeatherForm from "./WeatherForm";
 import WeatherMainInfo from "./WeatherMainInfo";
 import "../css/WeatherApp.css";
+import Loading from "./Loading";
 export default function WeatherApp() {
   const [weather, setWeather] = useState(null);
   const API_URL = "http://api.weatherapi.com/v1/current.json?&aqi=no";
@@ -21,8 +22,9 @@ export default function WeatherApp() {
       const request = await fetch(`${API_URL}&key=${API_KEY}&q=${city}`);
       if (request.ok) {
         const json = await request.json();
-        setWeather(json);
-        console.log(json);
+        setTimeout(() => {
+          setWeather(json);
+        }, 2000);
       } else {
         console.error("Error al obtener los datos del tiempo");
       }
@@ -30,16 +32,22 @@ export default function WeatherApp() {
       console.error("Error al obtener los datos del tiempo:", error);
     }
   }
-
   function handleChangeCity(city) {
     setWeather(null);
     loadInfo(city);
   }
-
   return (
     <div className="weatherCointeiner">
       <WeatherForm onChangeCity={handleChangeCity} />
-      <WeatherMainInfo weather={weather} />
+      {weather ? (
+        <WeatherMainInfo
+          weather={weather}
+          setWeather={setWeather}
+          loadInfo={loadInfo}
+        />
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 }
